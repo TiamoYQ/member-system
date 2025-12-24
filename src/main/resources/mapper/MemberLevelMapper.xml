@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.mapper.MemberLevelMapper">
+    <select id="selectAll" resultType="MemberLevel">
+        SELECT * FROM t_member_level ORDER BY level_id
+    </select>
+    <select id="selectById" parameterType="Integer" resultType="MemberLevel">
+        SELECT * FROM t_member_level WHERE level_id = #{levelId}
+    </select>
+    <select id="selectByPoints" parameterType="Integer" resultType="MemberLevel">
+        SELECT * FROM t_member_level
+        WHERE min_points <= #{points} AND (max_points IS NULL OR max_points >= #{points})
+        ORDER BY level_id DESC LIMIT 1
+    </select>
+</mapper>

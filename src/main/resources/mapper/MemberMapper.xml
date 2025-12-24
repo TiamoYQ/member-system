@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.mapper.MemberMapper">
+    <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyProperty="memberId">
+        INSERT INTO t_member(username,password,phone,email,channel_id,level_id,total_points,status)
+        VALUES(#{username},#{password},#{phone},#{email},#{channelId},#{levelId},#{totalPoints},#{status})
+    </insert>
+    <select id="selectAll" resultType="Member">
+        SELECT m.*,c.channel_name,r.level_name
+        FROM t_member m
+        LEFT JOIN t_reg_channel c ON m.channel_id = c.channel_id
+        LEFT JOIN t_member_level r ON m.level_id = r.level_id
+        WHERE m.status = 1
+        ORDER BY m.reg_time DESC
+    </select>
+    <select id="selectById" parameterType="Integer" resultType="Member">
+        SELECT m.*,c.channel_name,r.level_name
+        FROM t_member m
+        LEFT JOIN t_reg_channel c ON m.channel_id = c.channel_id
+        LEFT JOIN t_member_level r ON m.level_id = r.level_id
+        WHERE m.member_id = #{memberId}
+    </select>
+    <select id="selectByUsername" parameterType="String" resultType="Member">
+        SELECT * FROM t_member WHERE username = #{username}
+    </select>
+    <select id="selectByPhone" parameterType="String" resultType="Member">
+        SELECT * FROM t_member WHERE phone = #{phone}
+    </select>
+    <update id="update" parameterType="Member">
+        UPDATE t_member
+        SET username=#{username},phone=#{phone},email=#{email},level_id=#{levelId},total_points=#{totalPoints}
+        WHERE member_id = #{memberId}
+    </update>
+    <update id="delete" parameterType="Integer">
+        UPDATE t_member SET status = 0 WHERE member_id = #{memberId}
+    </update>
+</mapper>

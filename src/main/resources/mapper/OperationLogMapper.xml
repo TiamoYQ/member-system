@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.mapper.OperationLogMapper">
+    <insert id="insert" parameterType="OperationLog">
+        INSERT INTO t_operation_log(operate_user,operate_member_id,operate_type,operate_ip,operate_desc)
+        VALUES(#{operateUser},#{operateMemberId},#{operateType},#{operateIp},#{operateDesc})
+    </insert>
+</mapper>

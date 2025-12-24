@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.mapper.MemberAddressMapper">
+    <insert id="insert" parameterType="MemberAddress">
+        INSERT INTO t_member_address(member_id,receiver,phone,province,city,district,detail_address,is_default)
+        VALUES(#{memberId},#{receiver},#{phone},#{province},#{city},#{district},#{detailAddress},#{isDefault})
+    </insert>
+    <select id="selectByMemberId" parameterType="Integer" resultType="MemberAddress">
+        SELECT * FROM t_member_address WHERE member_id = #{memberId} ORDER BY is_default DESC
+    </select>
+    <update id="update" parameterType="MemberAddress">
+        UPDATE t_member_address
+        SET receiver=#{receiver},phone=#{phone},province=#{province},city=#{city},district=#{district},detail_address=#{detailAddress}
+        WHERE address_id = #{addressId}
+    </update>
+    <update id="setDefault">
+        UPDATE t_member_address SET is_default = 0 WHERE member_id = #{memberId};
+        UPDATE t_member_address SET is_default = 1 WHERE address_id = #{addressId};
+    </update>
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM t_member_address WHERE address_id = #{addressId}
+    </delete>
+</mapper>
