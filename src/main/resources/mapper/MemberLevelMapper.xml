@@ -11,7 +11,7 @@
     </select>
     <select id="selectByPoints" parameterType="Integer" resultType="MemberLevel">
         SELECT * FROM t_member_level
-        WHERE min_points <= #{points} AND (max_points IS NULL OR max_points >= #{points})
+        WHERE min_points < #{points} AND (max_points IS NULL OR max_points >= #{points})
         ORDER BY level_id DESC LIMIT 1
     </select>
 </mapper>

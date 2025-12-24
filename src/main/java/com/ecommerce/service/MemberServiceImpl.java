@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
         SqlSession session = MyBatisUtil.getSqlSession();
         this.memberMapper = session.getMapper(MemberMapper.class);
         // 直接实例化同包下的PointsServiceImpl，无需导入
-        this.pointsService = new com.ecommerce.service.impl.PointsServiceImpl();
+        this.pointsService = new com.ecommerce.service.PointsServiceImpl();
     }
 
     @Override

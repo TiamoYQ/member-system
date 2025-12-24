@@ -3,9 +3,9 @@ package com.ecommerce.controller;
 import com.ecommerce.service.MemberAddressService;
 import com.ecommerce.service.MemberService;
 import com.ecommerce.service.PointsService;
-import com.ecommerce.service.impl.MemberAddressServiceImpl;
+import com.ecommerce.service.MemberAddressServiceImpl;
 import com.ecommerce.service.MemberServiceImpl;
-import com.ecommerce.service.impl.PointsServiceImpl;
+import com.ecommerce.service.PointsServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

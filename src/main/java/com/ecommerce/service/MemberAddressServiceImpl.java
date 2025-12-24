@@ -1,4 +1,4 @@
-package com.ecommerce.service.impl;
+package com.ecommerce.service;
 
 import com.ecommerce.entity.MemberAddress;
 import com.ecommerce.exception.BusinessException;
@@ -19,7 +19,9 @@ public class MemberAddressServiceImpl implements MemberAddressService {
 
     @Override
     public boolean add(MemberAddress address) {
-        if (address.getMemberId() == null) throw new BusinessException("会员ID不能为空");
+        if (address.getMemberId() == null) {
+            throw new BusinessException("会员ID不能为空");
+        }
         return addressMapper.insert(address) > 0;
     }
 

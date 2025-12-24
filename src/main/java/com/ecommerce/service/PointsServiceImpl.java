@@ -1,4 +1,4 @@
-package com.ecommerce.service.impl;
+package com.ecommerce.service;
 
 import com.ecommerce.entity.Member;
 import com.ecommerce.entity.MemberLevel;
@@ -28,10 +28,14 @@ public class PointsServiceImpl implements PointsService {
     @Override
     public boolean addRecord(Integer memberId, Integer points, String bizType, String remark) {
         Member member = memberMapper.selectById(memberId);
-        if (member == null) throw new BusinessException("会员不存在");
+        if (member == null) {
+            throw new BusinessException("会员不存在");
+        }
         // 计算新积分
         int newPoints = member.getTotalPoints() + points;
-        if (newPoints < 0) throw new BusinessException("积分不足");
+        if (newPoints < 0) {
+            throw new BusinessException("积分不足");
+        }
         // 更新会员积分和等级
         MemberLevel newLevel = levelMapper.selectByPoints(newPoints);
         member.setTotalPoints(newPoints);
