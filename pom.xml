@@ -18,28 +18,41 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <mybatis.version>3.5.10</mybatis.version>
         <mysql.version>8.0.30</mysql.version>
-        <servlet-api.version>5.0.0</servlet-api.version> <!-- Jakarta Servlet 5 -->
-        <jstl.version>1.2</jstl.version>
+        <servlet-api.version>5.0.0</servlet-api.version> <!-- Jakarta Servlet -->
+        <jstl.version>3.0.0</jstl.version> <!-- Jakarta JSTL impl version -->
         <commons-codec.version>1.15</commons-codec.version>
     </properties>
 
+    <!-- Ensure Maven Central is available (useful if mirror misses some artifacts) -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+            <repository>
+                <id>central</id>
+                <url>https://repo1.maven.org/maven2/</url>
+            </repository>
+    </repositories>
+
     <dependencies>
-        <!-- Jakarta Servlet API for Tomcat 10 -->
+        <!-- Jakarta Servlet API (provided by Tomcat 10) -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>${servlet-api.version}</version>
+            <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
 
-        <!-- NOTE: remove/avoid javax JSP API; let container provide JSP support.
-             If you need a JSTL implementation compatible with Jakarta, add one here. -->
-        <!-- Example (may need to adjust to a Jakarta-compatible JSTL implementation if necessary) -->
-        <!-- <dependency>
-          <groupId>org.glassfish.web</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-          <version>3.0.0</version>
-        </dependency> -->
+
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
         <!-- MySQL驱动 -->
         <dependency>
