@@ -6,7 +6,7 @@ import com.ecommerce.util.IpUtil;
 import com.ecommerce.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class LogAop {
     public static void recordLog(String operateUser, Integer memberId, String type, HttpServletRequest request, String desc) {

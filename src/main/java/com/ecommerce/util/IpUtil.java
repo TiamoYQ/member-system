@@ -1,6 +1,6 @@
 package com.ecommerce.util;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class IpUtil {
     public static String getIp(HttpServletRequest request) {
